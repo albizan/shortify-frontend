@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react'
 
+import RegisterForm from '../RegisterForm'
+
 const App = () => {
   return (
     <Fragment>
-      <div></div>
+      <RegisterForm />
     </Fragment>
   )
 }
