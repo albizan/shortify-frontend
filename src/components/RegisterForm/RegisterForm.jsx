@@ -1,27 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, withFormik } from 'formik'
-import * as yup from 'yup'
+import validationSchema from './validationSchema'
 
 import FormError from '../FormError'
 import { registerUser } from '../../services'
 import { setLogin, setLogout } from '../../redux/actions'
-
-const validationSchema = yup.object().shape({
-  name: yup
-    .string()
-    .min(2, 'Use at least 2 characters')
-    .required('Please insert a name'),
-  email: yup
-    .string()
-    .email()
-    .required('Please insert a valid email address'),
-
-  password: yup
-    .string()
-    .min(6, 'Use at least 6 characters')
-    .required('Please insert a password'),
-})
 
 const RegisterForm = ({ handleSubmit, errors, touched, authState }) => {
   return (
