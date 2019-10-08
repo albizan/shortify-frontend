@@ -11,11 +11,12 @@ export async function registerUser(
       email: values.email,
       password: values.password,
     })
-    const { id, email, name } = data
-    const user = JSON.stringify({ id, name, email })
+    const user = JSON.stringify(data.user)
+    const jwt = JSON.stringify(data.jwt)
     localStorage.setItem('user', user)
-    setSubmitting(false)
+    localStorage.setItem('jwt', jwt)
     resetForm()
+    // Set user in redux store
     props.setLogin(user)
   } catch (error) {
     const { status } = error.response
@@ -23,7 +24,8 @@ export async function registerUser(
       setErrors({
         email: 'Email already used',
       })
-      setSubmitting(false)
     }
+  } finally {
+    setSubmitting(false)
   }
 }
