@@ -17,11 +17,17 @@ export async function registerUser(values, { props, setSubmitting, setErrors, re
     props.setLogin(user)
   } catch (error) {
     props.setLogout()
-    const { status } = error.response
-    if (status === 409) {
+    if (error.message === 'Network Error') {
       setErrors({
-        email: 'Email already used'
+        email: 'Service unavailable'
       })
+    } else {
+      const { status } = error.response
+      if (status === 409) {
+        setErrors({
+          name: 'Email already used'
+        })
+      }
     }
   } finally {
     setSubmitting(false)
