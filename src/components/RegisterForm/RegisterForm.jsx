@@ -5,9 +5,14 @@ import validationSchema from './validationSchema'
 
 import FormError from '../FormError'
 import { registerUser } from '../../services'
-import { setLogin, setLogout } from '../../redux/actions'
+import {
+  onLogin,
+  onLogout,
+  onRegistrationCompleted,
+  onRegistrationFailed
+} from '../../redux/actions'
 
-const RegisterForm = ({ handleSubmit, errors, touched, authState }) => {
+const RegisterForm = ({ handleSubmit, errors, touched, authState, formState }) => {
   return (
     <div className='px-20 py-12 w-136 rounded-lg shadow-lg border border-gray-300'>
       <h2 className='text-4xl mb-12 font-thin text-center'>Create Your Account</h2>
@@ -45,18 +50,14 @@ const RegisterForm = ({ handleSubmit, errors, touched, authState }) => {
         >
           Sign Up
         </button>
-        {authState.isLoggedIn && (
-          <p className='text-lg font-semibold'>
-            Thank you, you will be redirected to your dashboard
-          </p>
-        )}
+        {<p className='text-lg font-semibold'>{formState.message}</p>}
       </form>
     </div>
   )
 }
 
 const EnhancedRegisterForm = withFormik({
-  mapPropsToValues: ({ name, email, password, authState }) => {
+  mapPropsToValues: ({ name, email, password }) => {
     return {
       name: name || '',
       email: email || '',
@@ -69,14 +70,17 @@ const EnhancedRegisterForm = withFormik({
 
 function mapStatetoProps(store) {
   return {
-    authState: store.authState
+    authState: store.authState,
+    formState: store.formState
   }
 }
 
 export default connect(
   mapStatetoProps,
   {
-    setLogin,
-    setLogout
+    onLogin,
+    onLogout,
+    onRegistrationCompleted,
+    onRegistrationFailed
   }
 )(EnhancedRegisterForm)
