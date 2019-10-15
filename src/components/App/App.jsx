@@ -4,6 +4,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import RegisterPage from '../../pages/RegisterPage'
 import LoginPage from '../../pages/LoginPage'
 import Landing from '../../pages/Landing/Landing'
+import PrivateRoute from '../PrivateRoute'
+import Dashboard from '../../pages/Dashboard'
 
 const App = () => {
   return (
@@ -11,8 +13,9 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/register" component={RegisterPage} />
-          <Route exact path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
+          <Route path="/login" component={LoginPage} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
         </Switch>
       </BrowserRouter>
     </Fragment>
