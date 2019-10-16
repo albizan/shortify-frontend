@@ -2,12 +2,13 @@ import {
   REGISTRATION_COMPLETED,
   REGISTRATION_FAILED,
   LOGIN_COMPLETED,
-  LOGIN_FAILED
+  LOGIN_FAILED,
+  CLEAN_FORM_STATE,
 } from '../types'
 
 const INITIAL_FORM_STATE = {
   isSuccesful: false,
-  message: ''
+  message: '',
 }
 
 export function formReducer(formState = INITIAL_FORM_STATE, action) {
@@ -16,22 +17,27 @@ export function formReducer(formState = INITIAL_FORM_STATE, action) {
     case REGISTRATION_COMPLETED:
       return {
         isSuccesful: true,
-        message: payload
+        message: payload,
       }
     case REGISTRATION_FAILED:
       return {
         isSuccesful: false,
-        message: payload
+        message: payload,
       }
     case LOGIN_COMPLETED:
       return {
         isSuccesful: true,
-        message: payload
+        message: payload,
       }
     case LOGIN_FAILED:
       return {
         isSuccesful: false,
-        message: payload
+        message: payload,
+      }
+    case CLEAN_FORM_STATE:
+      return {
+        isSuccesful: false,
+        message: '',
       }
     default:
       return formState
