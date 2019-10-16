@@ -2,7 +2,8 @@ import { USER_LOGS_IN, USER_LOGS_OUT } from '../types'
 
 const INITIAL_AUTH_STATE = {
   isLoggedIn: false,
-  user: null
+  user: null,
+  accessToken: null,
 }
 
 export function authReducer(authState = INITIAL_AUTH_STATE, action) {
@@ -12,13 +13,15 @@ export function authReducer(authState = INITIAL_AUTH_STATE, action) {
       return {
         ...authState,
         isLoggedIn: true,
-        user: payload
+        user: payload.user,
+        accessToken: payload.jwt,
       }
     case USER_LOGS_OUT:
       return {
         ...authState,
         isLoggedIn: false,
-        user: null
+        user: null,
+        accessToken: null,
       }
     default:
       return authState
