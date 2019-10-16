@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Router, Switch, Route } from 'react-router-dom'
+
+import { history } from '../../helpers'
 
 import RegisterPage from '../../pages/RegisterPage'
 import LoginPage from '../../pages/LoginPage'
@@ -10,14 +12,14 @@ import Dashboard from '../../pages/Dashboard'
 const App = () => {
   return (
     <Fragment>
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/login" component={LoginPage} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
         </Switch>
-      </BrowserRouter>
+      </Router>
     </Fragment>
   )
 }
