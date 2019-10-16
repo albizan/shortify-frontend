@@ -1,15 +1,15 @@
 import { USER_LOGS_IN, USER_LOGS_OUT } from '../types'
 
-export function onLogin(user) {
+export function onLogin(userInfo) {
   return {
     type: USER_LOGS_IN,
-    payload: user
+    payload: userInfo,
   }
 }
 
 export function onLogout() {
   return {
     type: USER_LOGS_OUT,
-    payload: null
+    payload: null,
   }
 }
