@@ -582,6 +582,14 @@ video {
   height: auto;
 }
 
+/* Import Google Fonts */
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600,900&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
 .container {
   width: 100%;
   margin-right: auto;
@@ -3205,6 +3213,26 @@ video {
 }
 
 .border-none {
+  border-style: none;
+}
+
+.hover\:border-solid:hover {
+  border-style: solid;
+}
+
+.hover\:border-dashed:hover {
+  border-style: dashed;
+}
+
+.hover\:border-dotted:hover {
+  border-style: dotted;
+}
+
+.hover\:border-double:hover {
+  border-style: double;
+}
+
+.hover\:border-none:hover {
   border-style: none;
 }
 
@@ -11800,6 +11828,26 @@ video {
   }
 
   .sm\:border-none {
+    border-style: none;
+  }
+
+  .sm\:hover\:border-solid:hover {
+    border-style: solid;
+  }
+
+  .sm\:hover\:border-dashed:hover {
+    border-style: dashed;
+  }
+
+  .sm\:hover\:border-dotted:hover {
+    border-style: dotted;
+  }
+
+  .sm\:hover\:border-double:hover {
+    border-style: double;
+  }
+
+  .sm\:hover\:border-none:hover {
     border-style: none;
   }
 
@@ -20399,6 +20447,26 @@ video {
     border-style: none;
   }
 
+  .md\:hover\:border-solid:hover {
+    border-style: solid;
+  }
+
+  .md\:hover\:border-dashed:hover {
+    border-style: dashed;
+  }
+
+  .md\:hover\:border-dotted:hover {
+    border-style: dotted;
+  }
+
+  .md\:hover\:border-double:hover {
+    border-style: double;
+  }
+
+  .md\:hover\:border-none:hover {
+    border-style: none;
+  }
+
   .md\:border-0 {
     border-width: 0;
   }
@@ -28995,6 +29063,26 @@ video {
     border-style: none;
   }
 
+  .lg\:hover\:border-solid:hover {
+    border-style: solid;
+  }
+
+  .lg\:hover\:border-dashed:hover {
+    border-style: dashed;
+  }
+
+  .lg\:hover\:border-dotted:hover {
+    border-style: dotted;
+  }
+
+  .lg\:hover\:border-double:hover {
+    border-style: double;
+  }
+
+  .lg\:hover\:border-none:hover {
+    border-style: none;
+  }
+
   .lg\:border-0 {
     border-width: 0;
   }
@@ -37588,6 +37676,26 @@ video {
   }
 
   .xl\:border-none {
+    border-style: none;
+  }
+
+  .xl\:hover\:border-solid:hover {
+    border-style: solid;
+  }
+
+  .xl\:hover\:border-dashed:hover {
+    border-style: dashed;
+  }
+
+  .xl\:hover\:border-dotted:hover {
+    border-style: dotted;
+  }
+
+  .xl\:hover\:border-double:hover {
+    border-style: double;
+  }
+
+  .xl\:hover\:border-none:hover {
     border-style: none;
   }
 
