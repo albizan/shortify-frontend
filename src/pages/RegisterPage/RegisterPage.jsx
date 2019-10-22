@@ -1,12 +1,34 @@
-import React from 'react';
+import React from 'react'
+import styled from 'styled-components'
 import RegisterForm from '../../components/RegisterForm'
+import Navbar from '../../components/Navbar'
 
-const RegisterPage = props => {
+const Gradient = styled.div`
+  color: white;
+  background: #8e2de2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #4a00e0, #8e2de2); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #4a00e0,
+    #8e2de2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+`
+
+const RegisterPage = (props) => {
   return (
-    <div className="flex justify-center items-center h-screen w-full">
-      <RegisterForm />
+    <div className="w-full h-screen relative flex">
+      <Navbar position="absolute" theme="dark" />
+      <Gradient className="h-full hidden sm:flex sm:items-center sm:justify-center sm:flex-col sm:w-1/3">
+        <div className="px-4 text-center">
+          <p className="text-5xl font-semibold">One of us?</p>
+          <p className="text-xl">If you already have an account, just sign in!</p>
+        </div>
+      </Gradient>
+      <div className="h-full w-full sm:w-2/3 mt-20 sm:mt-0 flex justify-center sm:items-center">
+        <RegisterForm />
+      </div>
     </div>
-  );
-};
+  )
+}
 
 export default RegisterPage
