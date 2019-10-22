@@ -13,23 +13,15 @@ import {
   cleanFormState,
 } from '../../redux/actions'
 
-const RegisterForm = ({
-  handleSubmit,
-  errors,
-  touched,
-  formState,
-  cleanFormState,
-}) => {
+const RegisterForm = ({ handleSubmit, errors, touched, formState, cleanFormState }) => {
   useEffect(() => {
     // When form mounts, clean its state
     cleanFormState()
     // eslint-disable-next-line
   }, [])
   return (
-    <div className="px-20 py-12 w-136 rounded-lg shadow-lg border border-gray-300">
-      <h2 className="text-4xl mb-12 font-thin text-center">
-        Create Your Account
-      </h2>
+    <div className="px-20 py-12 w-136">
+      <h2 className="text-4xl mb-12 font-thin text-center">Create Free Account</h2>
       <form className="text-xl" onSubmit={handleSubmit}>
         <Field
           className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full"
