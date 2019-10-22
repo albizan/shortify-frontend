@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Navbar = (props) => {
+const Navbar = ({ position }) => {
   const [isOpen, setOpen] = useState(false)
 
   const renderSvgPath = () => {
@@ -36,7 +36,11 @@ const Navbar = (props) => {
   }
 
   return (
-    <header className="absolute top-0 left-0 right-0 sm:flex sm:justify-around sm:items-center px-2 py-3">
+    <header
+      className={`${
+        position === 'absolute' ? 'absolute top-0 left-0 right-0' : 'block'
+      }  sm:flex sm:justify-around sm:items-center px-2 py-3`}
+    >
       <div className="flex items-center justify-between sm:block px-2">
         <h2 className="text-2xl font-bold tracking-wide text-gray-200">Shortify</h2>
         <div className="sm:hidden">{renderNavbarButton()}</div>
