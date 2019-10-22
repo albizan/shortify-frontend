@@ -15,7 +15,7 @@ const App = () => {
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route path="/register" component={RegisterPage} />
+          <Route path="/signup" component={RegisterPage} />
           <Route path="/login" component={LoginPage} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
         </Switch>
