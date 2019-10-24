@@ -8,8 +8,13 @@ const NavbarHeader = styled.header`
   left: 0;
   right: 0;
   color: ${(props) => (props.theme === 'dark' ? 'black' : 'white')};
-  .navlink {
-    border-color: ${(props) => (props.theme === 'dark' ? 'black' : 'white')};
+`
+
+const StyledLink = styled(Link)`
+  border-color: ${(props) => (props.theme === 'dark' ? 'black' : 'white')};
+  &:hover {
+    color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
+    background-color: ${(props) => (props.theme === 'dark' ? 'black' : 'white')};
   }
 `
 
@@ -47,7 +52,7 @@ const Navbar = ({ position, theme }) => {
     <NavbarHeader
       position={position}
       theme={theme}
-      className="sm:flex sm:justify-around sm:items-center px-2 py-3"
+      className="sm:flex sm:justify-between sm:items-center px-2 sm:px-20 py-3"
     >
       <div className="flex items-center justify-between sm:block px-2">
         <Link to="/" className="text-2xl font-bold tracking-wide">
@@ -56,18 +61,27 @@ const Navbar = ({ position, theme }) => {
         <div className="sm:hidden">{renderNavbarButton()}</div>
       </div>
       <nav className={`sm:flex sm:items-center ${isOpen ? 'block' : 'hidden'}`}>
-        <Link to="/" className="block mt-1 p-2 sm:m-0 sm:ml-2 font-semibold rounded navlink">
+        <StyledLink
+          theme={theme}
+          to="/"
+          className="block mt-1 p-2 sm:m-0 sm:ml-2 font-semibold rounded"
+        >
           About
-        </Link>
-        <Link to="/login" className="block mt-1 p-2 sm:m-0 sm:ml-2 font-semibold rounded navlink">
+        </StyledLink>
+        <StyledLink
+          theme={theme}
+          to="/login"
+          className="block mt-1 p-2 sm:m-0 sm:ml-2 font-semibold rounded"
+        >
           Sign in
-        </Link>
-        <Link
+        </StyledLink>
+        <StyledLink
+          theme={theme}
           to="/signup"
-          className="block mt-1 p-2 sm:px-5 sm:m-0 sm:ml-2 font-semibold rounded sm:rounded-full border navlink"
+          className="block mt-1 p-2 sm:px-5 sm:m-0 sm:ml-2 font-semibold rounded sm:rounded-full border"
         >
           Sign Up
-        </Link>
+        </StyledLink>
       </nav>
     </NavbarHeader>
   )
