@@ -70,7 +70,7 @@ const Navbar = ({ position, theme }) => {
         </StyledLink>
         <StyledLink
           theme={theme}
-          to="/login"
+          to="/signin"
           className="block mt-1 p-2 sm:m-0 sm:ml-2 font-semibold rounded"
         >
           Sign in
