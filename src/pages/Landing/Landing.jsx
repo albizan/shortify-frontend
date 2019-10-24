@@ -32,7 +32,7 @@ const Landing = (props) => {
               Shorten and manage your links with ease
             </h4>
             <Link
-              className="bg-gray-200 text-gray-800 rounded-full px-5 py-4 text-sm sm:text-base font-bold uppercase tracking-wide"
+              className="bg-gray-200 text-gray-800 rounded-full px-5 py-4 mt-10 text-sm sm:text-base font-bold uppercase tracking-wide"
               to="/signup"
             >
               Register Now
