@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import RegisterForm from '../../components/RegisterForm'
 import Navbar from '../../components/Navbar'
 
@@ -23,6 +24,12 @@ const RegisterPage = (props) => {
           <p className="text-5xl font-semibold">One of us?</p>
           <p className="text-xl">If you already have an account, just sign in!</p>
         </div>
+        <Link
+          className="bg-gray-200 text-gray-800 rounded-full px-8 py-3 mt-6 text-sm sm:text-base font-bold uppercase tracking-wide"
+          to="/signin"
+        >
+          Sign In
+        </Link>
       </Gradient>
       <div className="h-full w-full sm:w-2/3 mt-20 sm:mt-0 flex justify-center sm:items-center">
         <RegisterForm />
