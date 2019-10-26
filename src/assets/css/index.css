@@ -9234,6 +9234,27 @@ body {
   z-index: auto;
 }
 
+.input-field {
+  display: block;
+  border-radius: 9999px;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: #fff;
+  border-width: 1px;
+  border-color: #cbd5e0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  outline: 0;
+}
+
+.input-field:focus {
+  outline: 0;
+  border-color: #5a67d8;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;
