@@ -9,3 +9,10 @@ body {
 @tailwind components;
 
 @tailwind utilities;
+
+.input-field {
+  @apply block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full outline-none;
+}
+.input-field:focus {
+  @apply outline-none border-indigo-600;
+}
