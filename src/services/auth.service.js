@@ -1,7 +1,10 @@
 import http from '../apis'
 import { history } from '../helpers'
 
-export async function registerUser(values, { props, setSubmitting, setErrors, resetForm }) {
+export async function registerUser(
+  values,
+  { props, setSubmitting, setValues, setErrors, resetForm }
+) {
   // Disable submit button
   setSubmitting(true)
 
@@ -11,30 +14,27 @@ export async function registerUser(values, { props, setSubmitting, setErrors, re
       email: values.email,
       password: values.password,
     })
-
-    // Store user information
-    props.onLogin(data)
-
-    // Set Form message
-    props.onRegistrationCompleted('Registration complete, you can now log in')
-
-    // Clean all form fields
-    resetForm()
+    setValues({
+      ...values,
+      message: 'Registration Completed. You can now sign in',
+    })
   } catch (error) {
     // Remove user information from redux store
     props.onLogout()
 
     // Check if error object has a response from server
-    if (error.response) {
-      const { status } = error.response
-      if (status === 409) {
-        setErrors({
-          name: 'Email already used',
-        })
-      }
-    } else {
-      // if server doesn't respond, show an error message to the user
-      props.onRegistrationFailed('Service unavailable')
+    if (!error.response) {
+      setValues({
+        ...values,
+        message: 'Service temporarily unavailable',
+      })
+      return
+    }
+    const { status } = error.response
+    if (status === 409) {
+      setErrors({
+        email: 'Email already used',
+      })
     }
   } finally {
     // Enable submit button
