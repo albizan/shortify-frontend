@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Field, withFormik } from 'formik'
 import validationSchema from './validationSchema'
@@ -13,18 +13,13 @@ import {
   cleanFormState,
 } from '../../redux/actions'
 
-const RegisterForm = ({ handleSubmit, errors, touched, formState, cleanFormState }) => {
-  useEffect(() => {
-    // When form mounts, clean its state
-    cleanFormState()
-    // eslint-disable-next-line
-  }, [])
+const RegisterForm = ({ values, handleSubmit, errors, touched, isSubmitting }) => {
   return (
     <div className="px-20 py-12 w-136">
       <h2 className="text-4xl mb-12 font-thin text-center">Create Free Account</h2>
       <form className="text-xl" onSubmit={handleSubmit}>
         <Field
-          className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full"
+          className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
           type="text"
           name="name"
           id="name"
@@ -33,7 +28,7 @@ const RegisterForm = ({ handleSubmit, errors, touched, formState, cleanFormState
         <FormError message={errors.name} touched={touched.name} />
 
         <Field
-          className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full"
+          className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
           type="email"
           name="email"
           id="email"
@@ -42,7 +37,7 @@ const RegisterForm = ({ handleSubmit, errors, touched, formState, cleanFormState
         <FormError message={errors.email} touched={touched.email} />
 
         <Field
-          className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full"
+          className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
           type="password"
           name="password"
           id="password"
@@ -54,9 +49,9 @@ const RegisterForm = ({ handleSubmit, errors, touched, formState, cleanFormState
           className="block rounded-full mt-10 py-3 px-5 bg-indigo-600 border border-indigo-600 mx-auto w-full text-white"
           type="submit"
         >
-          Sign Up
+          {isSubmitting ? 'Loading' : 'Sign Up'}
         </button>
-        {<p className="text-lg font-semibold">{formState.message}</p>}
+        {<p className="text-xl text-red-500 font-semibold text-center ">{values.message}</p>}
       </form>
     </div>
   )
@@ -68,6 +63,7 @@ const EnhancedRegisterForm = withFormik({
       name: name || '',
       email: email || '',
       password: password || '',
+      message: '',
     }
   },
   validationSchema: validationSchema,
