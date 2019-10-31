@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, withFormik } from 'formik'
+import styled from 'styled-components'
 import validationSchema from './validationSchema'
 
 import FormError from '../FormError'
@@ -12,6 +13,20 @@ import {
   onRegistrationFailed,
   cleanFormState,
 } from '../../redux/actions'
+
+const Button = styled.button`
+  background: #8e2de2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    45deg,
+    #4a00e0 10%,
+    #8e2de2 90%
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    45deg,
+    #4a00e0 10%,
+    #8e2de2 90%
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+`
 
 const RegisterForm = ({ values, handleSubmit, errors, touched, isSubmitting }) => {
   return (
@@ -45,12 +60,12 @@ const RegisterForm = ({ values, handleSubmit, errors, touched, isSubmitting }) =
         />
         <FormError message={errors.password} touched={touched.password} />
 
-        <button
-          className="block rounded-full mt-10 py-3 px-5 bg-indigo-600 border border-indigo-600 mx-auto w-full text-white"
+        <Button
+          className="block rounded-full mt-10 py-3 px-5 bg-indigo-600 border border-indigo-600 mx-auto w-full text-white font-semibold"
           type="submit"
         >
           {isSubmitting ? 'Loading' : 'Sign Up'}
-        </button>
+        </Button>
         {<p className="text-xl text-red-500 font-semibold text-center ">{values.message}</p>}
       </form>
     </div>
