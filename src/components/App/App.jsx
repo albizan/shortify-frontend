@@ -18,10 +18,10 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           <Route path="/signup" component={RegisterPage} />
           <Route path="/signin" component={LoginPage} />
-          <Route path="/confirmation/:token" component={ConfirmEmail} />
-          <Route path="/not-found" component={Landing} />
+          <Route path="/confirm-email/:token" component={ConfirmEmail} />
+          <Route exact path="/not-found" component={Landing} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
-          <Redirect to="not-found" />
+          <Redirect exact to="/not-found" />
         </Switch>
       </Router>
     </Fragment>
