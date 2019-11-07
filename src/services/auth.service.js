@@ -3,7 +3,7 @@ import { history } from '../helpers'
 
 export async function registerUser(
   values,
-  { props, setSubmitting, setValues, setErrors, resetForm }
+  { props, setSubmitting, setValues, setErrors }
 ) {
   // Disable submit button
   setSubmitting(true)
@@ -12,11 +12,11 @@ export async function registerUser(
     const { data } = await http.post('/auth/register', {
       name: values.name,
       email: values.email,
-      password: values.password,
+      password: values.password
     })
     setValues({
       ...values,
-      message: 'Registration Completed. You can now sign in',
+      message: 'Please check your email to activate your account'
     })
   } catch (error) {
     // Remove user information from redux store
@@ -26,14 +26,14 @@ export async function registerUser(
     if (!error.response) {
       setValues({
         ...values,
-        message: 'Service temporarily unavailable',
+        message: 'Service temporarily unavailable'
       })
       return
     }
     const { status } = error.response
     if (status === 409) {
       setErrors({
-        email: 'Email already used',
+        email: 'Email already used'
       })
     }
   } finally {
@@ -50,7 +50,7 @@ export async function loginUser(values, { props, setSubmitting, resetForm }) {
     // Send credentials
     const { data } = await http.post('/auth/login', {
       email: values.email,
-      password: values.password,
+      password: values.password
     })
 
     // Store user information
