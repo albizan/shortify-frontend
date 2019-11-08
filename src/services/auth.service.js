@@ -16,7 +16,7 @@ export async function registerUser(
     })
     setValues({
       ...values,
-      message: 'Please check your email to activate your account'
+      message: `Please check your email ${data.email} to activate your account`
     })
   } catch (error) {
     // Remove user information from redux store
