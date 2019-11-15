@@ -1,5 +1,5 @@
 import http from '../apis'
-import { history } from '../helpers'
+import { history, saveAccessToken } from '../helpers'
 
 export async function registerUser(
   values,
@@ -42,33 +42,52 @@ export async function registerUser(
   }
 }
 
-export async function loginUser(values, { props, setSubmitting, resetForm }) {
+export async function loginUser(
+  values,
+  { props, setSubmitting, setValues, setErrors }
+) {
   // Disable submit button
   setSubmitting(true)
 
   try {
-    // Send credentials
-    const { data } = await http.post('/auth/login', {
+    // Send credentials and wait for server's response
+    const response = await http.post('/auth/login', {
       email: values.email,
       password: values.password
     })
+    // Extract data from server's response
+    const { data } = response
 
-    // Store user information
-    props.onLogin(data)
+    // Store accessToken in localStorage
+    saveAccessToken(data.accessToken)
 
-    // Set form message in redux store
-    props.onLoginCompleted('Success, you will be redirected to your dashboard')
-
-    // Clean all form fields
-    resetForm()
+    // Show success message
+    setValues({
+      ...values,
+      message: 'Welcome back, you will be redirected to your dashboard'
+    })
 
     // Redirect user to his dashboard
     setTimeout(() => {
       history.push('/dashboard')
     }, 1500)
   } catch (error) {
+    // Remove user information from redux store
     props.onLogout()
-    props.onLoginFailed('Invalid Credentials')
+
+    // Check if error object has a response from server
+    if (!error.response) {
+      setValues({
+        ...values,
+        message: 'Service temporarily unavailable'
+      })
+      return
+    }
+    const { message } = error.response.data
+    setValues({
+      ...values,
+      message
+    })
   } finally {
     // Enable submit button
     setSubmitting(false)

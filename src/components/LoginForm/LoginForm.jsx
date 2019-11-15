@@ -1,37 +1,42 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Field, withFormik } from 'formik'
+import styled from 'styled-components'
 import validationSchema from './validationSchema'
 
 import FormError from '../FormError'
-import { history } from '../../helpers'
 import { loginUser } from '../../services'
-import {
-  onLogin,
-  onLogout,
-  onLoginCompleted,
-  onLoginFailed,
-  cleanFormState,
-} from '../../redux/actions'
+import { onLogin, onLogout } from '../../redux/actions'
 
-const RegisterForm = ({ handleSubmit, errors, touched, authState, formState, cleanFormState }) => {
-  useEffect(() => {
-    // Run code when component mounts
-    // Clean form fields
-    cleanFormState()
+const Button = styled.button`
+  background: #8e2de2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    45deg,
+    #4a00e0 10%,
+    #8e2de2 90%
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    45deg,
+    #4a00e0 10%,
+    #8e2de2 90%
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+`
 
-    // Check if user is already logged in, if so redirect to his dashboard
-    if (authState.isLoggedIn) {
-      history.push('/dashboard')
-    }
-    // eslint-disable-next-line
-  }, [])
+const RegisterForm = ({
+  values,
+  handleSubmit,
+  errors,
+  touched,
+  isSubmitting
+}) => {
   return (
-    <div className="px-20 py-12 w-136 rounded-lg shadow-lg border border-gray-300">
-      <h2 className="text-4xl mb-12 font-thin text-center">Log In</h2>
+    <div className="px-20 py-12 w-136">
+      <h2 className="text-4xl mb-12 font-thin text-center">
+        Sign in to your account
+      </h2>
       <form className="text-xl" onSubmit={handleSubmit}>
         <Field
-          className="block rounded-full outline-none focus:border-indigo-300 py-3 px-5 bg-white border border-gray-400 mx-auto w-full"
+          className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
           type="email"
           name="email"
           id="email"
@@ -40,7 +45,7 @@ const RegisterForm = ({ handleSubmit, errors, touched, authState, formState, cle
         <FormError message={errors.email} touched={touched.email} />
 
         <Field
-          className="block rounded-full outline-none focus:border-indigo-300 py-3 px-5 bg-white border border-gray-400 mx-auto w-full"
+          className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
           type="password"
           name="password"
           id="password"
@@ -48,13 +53,17 @@ const RegisterForm = ({ handleSubmit, errors, touched, authState, formState, cle
         />
         <FormError message={errors.password} touched={touched.password} />
 
-        <button
-          className="block rounded-full outline-none focus:outline-none mt-10 py-3 px-5 bg-indigo-600 hover:bg-indigo-700 border border-indigo-600 mx-auto w-full text-white"
+        <Button
+          className="block rounded-full mt-10 py-3 px-5 bg-indigo-600 border border-indigo-600 mx-auto w-full text-white font-semibold"
           type="submit"
         >
-          Log In
-        </button>
-        {<p className="text-lg font-semibold">{formState.message}</p>}
+          {isSubmitting ? 'Loading' : 'Sign In'}
+        </Button>
+        {
+          <p className="text-xl text-red-500 font-semibold text-center ">
+            {values.message}
+          </p>
+        }
       </form>
     </div>
   )
@@ -65,16 +74,17 @@ const EnhancedRegisterForm = withFormik({
     return {
       email: email || '',
       password: password || '',
+      message: ''
     }
   },
   validationSchema: validationSchema,
-  handleSubmit: loginUser,
+  handleSubmit: loginUser
 })(RegisterForm)
 
 function mapStatetoProps(store) {
   return {
     authState: store.authState,
-    formState: store.formState,
+    formState: store.formState
   }
 }
 
@@ -82,9 +92,6 @@ export default connect(
   mapStatetoProps,
   {
     onLogin,
-    onLogout,
-    onLoginCompleted,
-    onLoginFailed,
-    cleanFormState,
+    onLogout
   }
 )(EnhancedRegisterForm)

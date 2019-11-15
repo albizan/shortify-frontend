@@ -6,13 +6,7 @@ import validationSchema from './validationSchema'
 
 import FormError from '../FormError'
 import { registerUser } from '../../services'
-import {
-  onLogin,
-  onLogout,
-  onRegistrationCompleted,
-  onRegistrationFailed,
-  cleanFormState,
-} from '../../redux/actions'
+import { onLogin, onLogout } from '../../redux/actions'
 
 const Button = styled.button`
   background: #8e2de2; /* fallback for old browsers */
@@ -28,10 +22,18 @@ const Button = styled.button`
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `
 
-const RegisterForm = ({ values, handleSubmit, errors, touched, isSubmitting }) => {
+const RegisterForm = ({
+  values,
+  handleSubmit,
+  errors,
+  touched,
+  isSubmitting
+}) => {
   return (
     <div className="px-20 py-12 w-136">
-      <h2 className="text-4xl mb-12 font-thin text-center">Create Free Account</h2>
+      <h2 className="text-4xl mb-12 font-thin text-center">
+        Create Free Account
+      </h2>
       <form className="text-xl" onSubmit={handleSubmit}>
         <Field
           className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
@@ -66,7 +68,11 @@ const RegisterForm = ({ values, handleSubmit, errors, touched, isSubmitting }) =
         >
           {isSubmitting ? 'Loading' : 'Sign Up'}
         </Button>
-        {<p className="text-xl text-red-500 font-semibold text-center ">{values.message}</p>}
+        {
+          <p className="text-xl text-red-500 font-semibold text-center ">
+            {values.message}
+          </p>
+        }
       </form>
     </div>
   )
@@ -78,17 +84,17 @@ const EnhancedRegisterForm = withFormik({
       name: name || '',
       email: email || '',
       password: password || '',
-      message: '',
+      message: ''
     }
   },
   validationSchema: validationSchema,
-  handleSubmit: registerUser,
+  handleSubmit: registerUser
 })(RegisterForm)
 
 function mapStatetoProps(store) {
   return {
     authState: store.authState,
-    formState: store.formState,
+    formState: store.formState
   }
 }
 
@@ -96,9 +102,6 @@ export default connect(
   mapStatetoProps,
   {
     onLogin,
-    onLogout,
-    onRegistrationCompleted,
-    onRegistrationFailed,
-    cleanFormState,
+    onLogout
   }
 )(EnhancedRegisterForm)

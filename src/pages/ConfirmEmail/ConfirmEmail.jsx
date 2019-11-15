@@ -25,7 +25,7 @@ const ConfirmEmail = props => {
     }
 
     sendToken()
-  }, [props.match.params.token])
+  }, [props.match.params])
 
   return (
     <Fragment>
