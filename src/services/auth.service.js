@@ -1,5 +1,5 @@
 import http from '../apis'
-import { history, saveAccessToken } from '../helpers'
+import { history } from '../helpers'
 
 export async function registerUser(
   values,
@@ -58,8 +58,8 @@ export async function loginUser(
     // Extract data from server's response
     const { data } = response
 
-    // Store accessToken in localStorage
-    saveAccessToken(data.accessToken)
+    // Store accessToken redux store
+    props.onLogin(data.accessToken)
 
     // Show success message
     setValues({
