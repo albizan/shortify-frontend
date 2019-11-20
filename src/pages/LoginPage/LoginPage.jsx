@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import { history, retreiveAccessToken } from '../../helpers'
 import LoginForm from '../../components/LoginForm'
 import Navbar from '../../components/Navbar'
+import http from '../../apis'
+import { onLogin, onLogout } from '../../redux/actions'
 
 const Gradient = styled.div`
   color: white;
@@ -19,7 +24,25 @@ const Gradient = styled.div`
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `
 
-const RegisterPage = props => {
+const RegisterPage = ({ onLogin, onLogout }) => {
+  useEffect(() => {
+    async function checkToken() {
+      try {
+        // If this throw an error, access token is invalid
+        await http.get('user/me')
+        console.log('AccessToken is still valid, redirecting to dashboard')
+        const accessToken = retreiveAccessToken()
+        onLogin(accessToken)
+        history.push('/dashboard')
+      } catch (error) {
+        // logging out programmatically
+        onLogout()
+      }
+    }
+    checkToken()
+    // eslint-disable-next-line
+  }, [])
+
   return (
     <div className="w-full h-screen relative flex">
       <Navbar position="absolute" theme="dark" />
@@ -44,4 +67,7 @@ const RegisterPage = props => {
   )
 }
 
-export default RegisterPage
+export default connect(null, {
+  onLogout,
+  onLogin
+})(RegisterPage)
