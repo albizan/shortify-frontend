@@ -1,41 +1,40 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import { onLogout } from '../../redux/actions'
+import { onLogout, setUser } from '../../redux/actions'
 import { history } from '../../helpers'
 import http from '../../apis'
 
-const Dashboard = ({ authState, onLogout }) => {
-  const [user, setUser] = useState(undefined)
+import Header from '../../components/Dashboard/Header'
 
+const Dashboard = ({ authState, onLogout, setUser }) => {
   // Check if local accessToken is still valid
   useEffect(() => {
     async function getUserInfo() {
       try {
+        // Use JWT to retreive user info
         const response = await http.get('user/me')
+        // Load user info in redux store
         setUser(response.data)
       } catch (error) {
-        // @todo logout programmatically
+        console.log({ error })
+        // logging out programmatically
+        console.log('Access Token is invalid')
         onLogout()
         history.push('/signin')
       }
     }
     getUserInfo()
+    // eslint-disable-next-line
   }, [])
 
   // If there is no user logged in, redirect to sign in page
-  if (!authState.isLoggedIn) return <Redirect to="/signin" />
-
-  if (!user) {
-    return null
-  }
+  if (!authState.isLoggedIn || !authState.user) return <Redirect to="/signin" />
 
   return (
     <Fragment>
-      <div>
-        <p>Welcome Back {user ? user.name : 'Anonymous'}</p>
-      </div>
+      <Header />
     </Fragment>
   )
 }
@@ -47,5 +46,6 @@ function mapStateToProps(store) {
 }
 
 export default connect(mapStateToProps, {
-  onLogout
+  onLogout,
+  setUser
 })(Dashboard)
