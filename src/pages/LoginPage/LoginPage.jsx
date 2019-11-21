@@ -46,10 +46,10 @@ const RegisterPage = ({ onLogin, onLogout }) => {
   return (
     <div className="w-full h-screen relative flex">
       <Navbar position="absolute" theme="dark" />
-      <div className="h-full w-full sm:w-2/3 mt-20 sm:mt-0 flex justify-center sm:items-center">
+      <div className="h-full w-full lg:w-2/3 mt-20 lg:mt-0 flex justify-center lg:items-center">
         <LoginForm />
       </div>
-      <Gradient className="h-full hidden sm:flex sm:items-center sm:justify-center sm:flex-col sm:w-1/3">
+      <Gradient className="h-full hidden lg:flex lg:items-center lg:justify-center lg:flex-col lg:w-1/3">
         <div className="px-4 text-center">
           <p className="text-5xl font-semibold">New Here?</p>
           <p className="text-xl">
