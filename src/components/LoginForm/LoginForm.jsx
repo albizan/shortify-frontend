@@ -83,15 +83,11 @@ const EnhancedRegisterForm = withFormik({
 
 function mapStatetoProps(store) {
   return {
-    authState: store.authState,
-    formState: store.formState
+    authState: store.authState
   }
 }
 
-export default connect(
-  mapStatetoProps,
-  {
-    onLogin,
-    onLogout
-  }
-)(EnhancedRegisterForm)
+export default connect(mapStatetoProps, {
+  onLogin,
+  onLogout
+})(EnhancedRegisterForm)
