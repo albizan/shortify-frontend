@@ -8,6 +8,7 @@ import http from '../../apis'
 
 import Header from '../../components/dashboard/Header'
 import Stats from '../../components/dashboard/Stats'
+import LinkList from '../../components/dashboard/LinkList'
 
 const Dashboard = ({ authState, onLogout, setUser }) => {
   // Check if local accessToken is still valid
@@ -37,6 +38,7 @@ const Dashboard = ({ authState, onLogout, setUser }) => {
     <Fragment>
       <Header />
       <Stats />
+      <LinkList />
     </Fragment>
   )
 }
