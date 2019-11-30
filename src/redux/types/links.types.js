@@ -1,0 +1,1 @@
+export const SET_LINKS_STATS = 'SET_LINKS_STATS'
