@@ -7,6 +7,7 @@ import { history } from '../../helpers'
 import http from '../../apis'
 
 import Header from '../../components/dashboard/Header'
+import Stats from '../../components/dashboard/Stats'
 
 const Dashboard = ({ authState, onLogout, setUser }) => {
   // Check if local accessToken is still valid
@@ -35,6 +36,7 @@ const Dashboard = ({ authState, onLogout, setUser }) => {
   return (
     <Fragment>
       <Header />
+      <Stats />
     </Fragment>
   )
 }
