@@ -1,40 +1,49 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import http from '../../../apis'
+import { setLinks } from '../../../redux/actions'
+import { getLinksFromServer } from '../../../services'
+
+import LinkItem from '../LinkItem'
 
 const LinkList = props => {
-  console.log(props)
+  console.log('Render LinkList')
+  const { links, setLinks } = props
   // Set default value for itemsPerPage to 5
   const [itemsPerPage, setItemsPerPage] = useState(5)
-  const [links, setLinks] = useState([])
 
   useEffect(() => {
     // When component mounts, request page 1 with 5 items per page
-    async function getLinksFromServer() {
-      const response = await http.get('user/links', {
-        params: {
-          page: 1,
-          size: itemsPerPage
-        }
-      })
-      setLinks(response.data)
-    }
-    getLinksFromServer()
+    getLinksFromServer(itemsPerPage, setLinks)
   }, [])
   return (
-    <div className="container">
-      {links.map(link => {
-        return <p>localhost:3000/{link.id}</p>
-      })}
+    <div className="w-full px-8 mt-10">
+      <div className="flex flex-row justify-between items-center">
+        <h3 className="font-semibold uppercase tracking-wide text-gray-700">
+          Manage your links
+        </h3>
+        <div>
+          <Link
+            to="new-link"
+            className="text-gray-800 text-base bg-gray-300 font-semibold px-3 py-1 rounded hover:bg-gray-700 hover:text-gray-200 focus:outline-none"
+          >
+            + Add new Link
+          </Link>
+        </div>
+      </div>
+
+      {links.map(link => (
+        <LinkItem key={link.id} link={link} />
+      ))}
     </div>
   )
 }
 
 function mapStateToProps(store) {
   return {
-    ...store.linkState
+    links: store.linksState.links
   }
 }
 
-export default connect(mapStateToProps)(LinkList)
+export default connect(mapStateToProps, { setLinks })(LinkList)
