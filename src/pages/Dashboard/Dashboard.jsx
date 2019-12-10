@@ -6,9 +6,9 @@ import { onLogout, setUser } from '../../redux/actions'
 import { history } from '../../helpers'
 import http from '../../apis'
 
-import Header from '../../components/dashboard/Header'
-import Stats from '../../components/dashboard/Stats'
-import LinkList from '../../components/dashboard/LinkList'
+import Stats from '../../components/Dashboard/Stats'
+import Header from '../../components/Dashboard/Header'
+import LinkList from '../../components/Dashboard/LinkList'
 
 const Dashboard = ({ authState, onLogout, setUser }) => {
   // Check if local accessToken is still valid
