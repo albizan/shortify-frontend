@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import { setLinks } from '../../../redux/actions'
 import { getLinksFromServer } from '../../../services'
 
+import NewLinkForm from '../NewLinkForm'
 import LinkItem from '../LinkItem'
 
 const LinkList = props => {
-  console.log('Render LinkList')
   const { links, setLinks } = props
   // Set default value for itemsPerPage to 5
   // const [itemsPerPage, setItemsPerPage] = useState(5)
+
+  const [showNewLinkPanel, setShowNewLinkPanel] = useState(false)
 
   useEffect(() => {
     // When component mounts, request page 1 with 5 items per page
@@ -26,14 +27,21 @@ const LinkList = props => {
           Manage your links
         </h3>
         <div>
-          <Link
-            to="new-link"
+          <button
+            onClick={() => setShowNewLinkPanel(true)}
             className="text-gray-800 text-base bg-gray-300 font-semibold px-3 py-1 rounded hover:bg-gray-700 hover:text-gray-200 focus:outline-none"
           >
             + Add new Link
-          </Link>
+          </button>
         </div>
       </div>
+      {showNewLinkPanel && (
+        <NewLinkForm
+          closePanel={() => {
+            setShowNewLinkPanel(false)
+          }}
+        />
+      )}
 
       {links.map(link => (
         <LinkItem key={link.id} link={link} />
