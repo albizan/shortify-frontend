@@ -1,5 +1,4 @@
 import http from '../apis'
-import { history } from '../helpers'
 
 export async function getLinksFromServer(page = 1, itemsPerPage = 5, setLinks) {
   const response = await http.get('user/links', {
@@ -29,14 +28,16 @@ export async function deleteLink(id, removeLink) {
   }
 }
 
-export async function addLink({ link, isActive }) {
+export async function addLink({ title, link, isActive, closePanel, setLinks }) {
   const data = {
+    title: title,
     original: link,
     isActive: isActive === 'true' ? true : false
   }
   try {
     await http.post('user/add-link', data)
-    history.push('/dashboard')
+    closePanel()
+    await getLinksFromServer(1, 5, setLinks)
   } catch (error) {
     console.log(error)
   }
