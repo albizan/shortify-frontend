@@ -7,7 +7,6 @@ import { FaTrashAlt, FaEdit, FaLink } from 'react-icons/fa'
 
 const LinkItem = props => {
   const { link, removeLink } = props
-  console.log(link)
   return (
     <Fragment>
       <div className="flex justify-between items-center border rounded my-6 p-6 shadow bg-white">
