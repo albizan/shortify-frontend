@@ -7,6 +7,7 @@ import http from '../../../apis'
 const Stats = props => {
   const { activeLinks, totalClicks, totalLinks, setLinksStats } = props
   const [loaded, setLoaded] = useState(false)
+
   useEffect(() => {
     async function getUserStats() {
       try {
@@ -17,10 +18,13 @@ const Stats = props => {
         console.log("Can't connect to server")
       }
     }
-    console.log('Stats mounted')
+
     // Call api server
     getUserStats()
+
+    // eslint-disable-next-line
   }, [])
+
   return (
     <div className="container mx-auto py-8">
       <h3 className="font-semibold uppercase tracking-wide text-gray-700">

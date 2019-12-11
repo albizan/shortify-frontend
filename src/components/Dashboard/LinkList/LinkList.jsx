@@ -11,14 +11,16 @@ const LinkList = props => {
   console.log('Render LinkList')
   const { links, setLinks } = props
   // Set default value for itemsPerPage to 5
-  const [itemsPerPage, setItemsPerPage] = useState(5)
+  // const [itemsPerPage, setItemsPerPage] = useState(5)
 
   useEffect(() => {
     // When component mounts, request page 1 with 5 items per page
-    getLinksFromServer(itemsPerPage, setLinks)
+    getLinksFromServer(1, 5, setLinks)
+
+    // eslint-disable-next-line
   }, [])
   return (
-    <div className="w-full px-8 mt-10">
+    <div className="container mx-auto py-8 mt-10">
       <div className="flex flex-row justify-between items-center">
         <h3 className="font-semibold uppercase tracking-wide text-gray-700">
           Manage your links
