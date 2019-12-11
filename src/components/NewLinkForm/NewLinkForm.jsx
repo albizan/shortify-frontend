@@ -21,10 +21,6 @@ const Button = styled.button`
 `
 
 const NewLinkForm = ({ handleSubmit, isSubmitting, errors, touched }) => {
-  const handle = e => {
-    e.preventDefault()
-    console.log('Handle')
-  }
   return (
     <div className="px-20 py-12 w-full">
       <h2 className="text-4xl mb-12 font-thin text-center">Add new Link</h2>
