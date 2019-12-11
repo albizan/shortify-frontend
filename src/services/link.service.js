@@ -1,10 +1,10 @@
 import http from '../apis'
 import { history } from '../helpers'
 
-export async function getLinksFromServer(itemsPerPage, setLinks) {
+export async function getLinksFromServer(page = 1, itemsPerPage = 5, setLinks) {
   const response = await http.get('user/links', {
     params: {
-      page: 1,
+      page,
       size: itemsPerPage
     }
   })
