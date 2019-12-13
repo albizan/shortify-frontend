@@ -2,8 +2,8 @@ import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import { onLogout, setUser } from '../../redux/actions'
-import { history } from '../../helpers'
+import { onLogout, setUser, onLogin } from '../../redux/actions'
+import { history, retreiveAccessToken } from '../../helpers'
 import http from '../../apis'
 
 import Stats from '../../components/dashboard/Stats'
@@ -19,6 +19,8 @@ const Dashboard = ({ authState, onLogout, setUser }) => {
         const response = await http.get('user/me')
         // Load user info in redux store
         setUser(response.data)
+        // Retreive access token and update redux store
+        onLogin(retreiveAccessToken())
       } catch (error) {
         console.log({ error })
         // logging out programmatically
