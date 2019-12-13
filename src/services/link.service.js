@@ -30,9 +30,9 @@ export async function deleteLink(id, removeLink) {
 
 export async function addLink({ title, link, isActive, closePanel, setLinks }) {
   const data = {
-    title: title,
+    title,
     original: link,
-    isActive: isActive === 'true' ? true : false
+    isActive
   }
   try {
     await http.post('user/add-link', data)

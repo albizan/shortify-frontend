@@ -30,7 +30,7 @@ const NewLinkForm = ({ handleSubmit, isSubmitting, errors, touched }) => {
         />
         <FormError message={errors.link} touched={touched.link} />
 
-        <Field
+        {/* <Field
           className="block rounded py-2 px-4 bg-white border border-gray-400 mx-auto w-full focus:outline-none cursor-pointer"
           component="select"
           name="isActive"
@@ -38,7 +38,17 @@ const NewLinkForm = ({ handleSubmit, isSubmitting, errors, touched }) => {
         >
           <option value="true">Active</option>
           <option value="false">Not Active</option>
-        </Field>
+        </Field> */}
+        <Field
+          className="w-3 h-3"
+          type="checkbox"
+          name="isActive"
+          id="isActive"
+        />
+        <label className="cursor-pointer" htmlFor="isActive">
+          Active
+        </label>
+
         <div className="flex justify-end">
           <button
             className="block rounded mt-5 py-3 px-5 bg-gray-200 text-gray-800 font-semibold"
@@ -57,7 +67,7 @@ const EnhancedLinkForm = withFormik({
     return {
       title: '',
       link: '',
-      isActive: 'true',
+      isActive: false,
       closePanel: props.closePanel,
       setLinks: props.setLinks
     }
