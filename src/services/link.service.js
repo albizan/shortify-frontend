@@ -17,10 +17,8 @@ export async function deleteLink(id, removeLink) {
       // Toast Error
       return
     }
-    console.log(`Link with id: ${id} was deleted`)
     // Delete successful
-    // Remove link from current linksStore
-    console.log(`Service`)
+    // Remove link from current linksStore with the action creator [removeLink]
     removeLink(id)
   } catch (error) {
     console.log(error)
