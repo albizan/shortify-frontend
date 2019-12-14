@@ -11,7 +11,6 @@ export async function getLinksFromServer(page = 1, itemsPerPage = 5, setLinks) {
 }
 
 export async function deleteLink(id, removeLink) {
-  console.log(`Delete link with id: ${id}`)
   try {
     const response = await http.delete(`user/delete-link/${id}`)
     if (response.data.affected === 0) {
@@ -38,6 +37,17 @@ export async function addLink({ title, link, isActive, closePanel, setLinks }) {
     await http.post('user/add-link', data)
     closePanel()
     await getLinksFromServer(1, 5, setLinks)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function toggleIsActive(id, newIsActiveValue) {
+  try {
+    const response = await http.patch(`user/patch-link/${id}`, {
+      isActive: newIsActiveValue
+    })
+    console.log(response)
   } catch (error) {
     console.log(error)
   }
