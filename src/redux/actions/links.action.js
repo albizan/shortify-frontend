@@ -1,4 +1,12 @@
-import { SET_LINKS, SET_LINKS_STATS, REMOVE_LINK, CHANGE_PAGE, SET_ITEMS_PER_PAGE } from '../types'
+import {
+  SET_LINKS,
+  SET_LINKS_STATS,
+  REMOVE_LINK,
+  CHANGE_PAGE,
+  SET_ITEMS_PER_PAGE,
+  INCREASE_ACTIVE_COUNT,
+  DECREASE_ACTIVE_COUNT
+} from '../types'
 
 export function setLinksStats(stats) {
   return {
@@ -29,5 +37,15 @@ export function setItemsPerPage(numberOfItems) {
   return {
     type: SET_ITEMS_PER_PAGE,
     payload: numberOfItems
+  }
+}
+export function increaseActiveCount() {
+  return {
+    type: INCREASE_ACTIVE_COUNT
+  }
+}
+export function decreaseActiveCount() {
+  return {
+    type: DECREASE_ACTIVE_COUNT
   }
 }
