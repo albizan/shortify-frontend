@@ -8,18 +8,16 @@ import NewLinkForm from '../NewLinkForm'
 import LinkItem from '../LinkItem'
 
 const LinkList = props => {
-  const { links, setLinks } = props
-  // Set default value for itemsPerPage to 5
-  // const [itemsPerPage, setItemsPerPage] = useState(5)
+  const { page, itemsPerPage, links, setLinks } = props
 
   const [showNewLinkPanel, setShowNewLinkPanel] = useState(false)
 
   useEffect(() => {
     // When component mounts, request page 1 with 5 items per page
-    getLinksFromServer(1, 5, setLinks)
+    getLinksFromServer(page, itemsPerPage, setLinks)
 
     // eslint-disable-next-line
-  }, [])
+  }, [page, itemsPerPage])
   return (
     <div className="container mx-auto py-8 mt-10">
       <div className="flex flex-row justify-between items-center">
@@ -52,7 +50,7 @@ const LinkList = props => {
 
 function mapStateToProps(store) {
   return {
-    links: store.linksState.links
+    ...store.linksState
   }
 }
 
