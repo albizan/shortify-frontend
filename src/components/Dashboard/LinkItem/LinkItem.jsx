@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import {
   removeLink,
   increaseActiveCount,
-  decreaseActiveCount
+  decreaseActiveCount,
+  decreaseLinkCount
 } from '../../../redux/actions'
 import { deleteLink, toggleIsActive } from '../../../services'
 
@@ -24,7 +25,13 @@ const ToggleButton = styled.div`
 `
 
 const LinkItem = props => {
-  const { link, removeLink, increaseActiveCount, decreaseActiveCount } = props
+  const {
+    link,
+    removeLink,
+    increaseActiveCount,
+    decreaseActiveCount,
+    decreaseLinkCount
+  } = props
   const { id, title, original, isActive } = link
 
   const [active, setActive] = useState(isActive)
@@ -38,6 +45,11 @@ const LinkItem = props => {
     }
     toggleIsActive(id, !active)
     setActive(!active)
+  }
+
+  const handleDelete = () => {
+    deleteLink(id, removeLink)
+    decreaseLinkCount()
   }
 
   return (
@@ -60,7 +72,7 @@ const LinkItem = props => {
             </div>
             <div>
               <h3 className="text-xl">{title}</h3>
-              <h4 className="text-sm w-full truncate"> {original} </h4>
+              <h4 className="text-sm w-136 truncate">{original}</h4>
             </div>
           </div>
           <div className="flex items-center p-3">
@@ -78,7 +90,7 @@ const LinkItem = props => {
                 </div>
                 <div className="flex justify-end items-center">
                   <div
-                    onClick={() => deleteLink(id, removeLink)}
+                    onClick={handleDelete}
                     className="w-10 h-10 bg-red-500 p-2 rounded-full flex justify-center items-center cursor-pointer mr-4"
                   >
                     <FaTimes className="text-xl text-gray-100" />
@@ -107,5 +119,6 @@ const LinkItem = props => {
 export default connect(null, {
   removeLink,
   increaseActiveCount,
-  decreaseActiveCount
+  decreaseActiveCount,
+  decreaseLinkCount
 })(LinkItem)
