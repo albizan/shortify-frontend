@@ -25,7 +25,14 @@ export async function deleteLink(id, removeLink) {
   }
 }
 
-export async function addLink({ title, link, isActive, closePanel, setLinks }) {
+export async function addLink({
+  title,
+  link,
+  isActive,
+  closePanel,
+  setLinks,
+  increaseLinkCount
+}) {
   const data = {
     title,
     original: link,
@@ -33,6 +40,7 @@ export async function addLink({ title, link, isActive, closePanel, setLinks }) {
   }
   try {
     await http.post('user/add-link', data)
+    increaseLinkCount()
     closePanel()
     await getLinksFromServer(1, 5, setLinks)
   } catch (error) {
