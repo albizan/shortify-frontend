@@ -5,7 +5,9 @@ import {
   CHANGE_PAGE,
   SET_ITEMS_PER_PAGE,
   INCREASE_ACTIVE_COUNT,
-  DECREASE_ACTIVE_COUNT
+  DECREASE_ACTIVE_COUNT,
+  INCREASE_LINK_COUNT,
+  DECREASE_LINK_COUNT
 } from '../types'
 
 const INITIAL_LINKS_STATE = {
@@ -59,6 +61,17 @@ export function linksReducer(linksState = INITIAL_LINKS_STATE, action) {
       return {
         ...linksState,
         activeLinks: linksState.activeLinks - 1
+      }
+    case INCREASE_LINK_COUNT:
+      console.log('Reducer')
+      return {
+        ...linksState,
+        totalLinks: linksState.totalLinks + 1
+      }
+    case DECREASE_LINK_COUNT:
+      return {
+        ...linksState,
+        totalLinks: linksState.totalLinks - 1
       }
     default:
       return linksState

@@ -5,7 +5,9 @@ import {
   CHANGE_PAGE,
   SET_ITEMS_PER_PAGE,
   INCREASE_ACTIVE_COUNT,
-  DECREASE_ACTIVE_COUNT
+  DECREASE_ACTIVE_COUNT,
+  INCREASE_LINK_COUNT,
+  DECREASE_LINK_COUNT
 } from '../types'
 
 export function setLinksStats(stats) {
@@ -47,5 +49,15 @@ export function increaseActiveCount() {
 export function decreaseActiveCount() {
   return {
     type: DECREASE_ACTIVE_COUNT
+  }
+}
+export function increaseLinkCount() {
+  return {
+    type: INCREASE_LINK_COUNT
+  }
+}
+export function decreaseLinkCount() {
+  return {
+    type: DECREASE_LINK_COUNT
   }
 }
