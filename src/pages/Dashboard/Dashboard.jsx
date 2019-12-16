@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 
 import { onLogout, setUser, onLogin } from '../../redux/actions'
 import { history, retreiveAccessToken } from '../../helpers'
@@ -9,8 +8,9 @@ import http from '../../apis'
 import Stats from '../../components/dashboard/Stats'
 import Header from '../../components/dashboard/Header'
 import LinkList from '../../components/dashboard/LinkList'
+import Pagination from '../../components/dashboard/Pagination'
 
-const Dashboard = ({ authState, onLogout, setUser }) => {
+const Dashboard = ({ authState, onLogin, onLogout, setUser }) => {
   // Check if local accessToken is still valid
   useEffect(() => {
     async function getUserInfo() {
@@ -22,7 +22,6 @@ const Dashboard = ({ authState, onLogout, setUser }) => {
         // Retreive access token and update redux store
         onLogin(retreiveAccessToken())
       } catch (error) {
-        console.log({ error })
         // logging out programmatically
         console.log('Access Token is invalid')
         onLogout()
@@ -32,15 +31,15 @@ const Dashboard = ({ authState, onLogout, setUser }) => {
     getUserInfo()
     // eslint-disable-next-line
   }, [])
-
   // If there is no user logged in, redirect to sign in page
-  if (!authState.isLoggedIn || !authState.user) return <Redirect to="/signin" />
+  if (!authState.isLoggedIn || !authState.user) return null
 
   return (
     <Fragment>
       <Header />
       <Stats />
       <LinkList />
+      <Pagination />
     </Fragment>
   )
 }
@@ -53,5 +52,6 @@ function mapStateToProps(store) {
 
 export default connect(mapStateToProps, {
   onLogout,
-  setUser
+  setUser,
+  onLogin
 })(Dashboard)
