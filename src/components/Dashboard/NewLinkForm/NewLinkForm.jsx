@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { Field, withFormik } from 'formik'
 import validationSchema from './validationSchema'
 
-import { setLinks } from '../../../redux/actions'
+import { setLinks, increaseLinkCount } from '../../../redux/actions'
 import { addLink } from '../../../services'
 
 import FormError from '../../FormError'
 
 const NewLinkForm = ({ handleSubmit, isSubmitting, errors, touched }) => {
   return (
-    <div className="py-6">
+    <div className="mt-3 p-5 border-2 border-gray-200 rounded">
       <form className="text-xl" onSubmit={handleSubmit}>
         <Field
           className="block rounded py-2 px-4 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
@@ -26,32 +26,23 @@ const NewLinkForm = ({ handleSubmit, isSubmitting, errors, touched }) => {
           type="text"
           name="link"
           id="link"
-          placeholder="Link"
+          placeholder="http://..."
         />
         <FormError message={errors.link} touched={touched.link} />
-
-        {/* <Field
-          className="block rounded py-2 px-4 bg-white border border-gray-400 mx-auto w-full focus:outline-none cursor-pointer"
-          component="select"
-          name="isActive"
-          id="isActive"
-        >
-          <option value="true">Active</option>
-          <option value="false">Not Active</option>
-        </Field> */}
-        <Field
-          className="w-3 h-3"
-          type="checkbox"
-          name="isActive"
-          id="isActive"
-        />
-        <label className="cursor-pointer" htmlFor="isActive">
-          Active
-        </label>
-
-        <div className="flex justify-end">
+        <div className="flex justify-between items-center">
+          <div>
+            <Field
+              className="w-4 h-4"
+              type="checkbox"
+              name="isActive"
+              id="isActive"
+            />
+            <label className="cursor-pointer ml-2" htmlFor="isActive">
+              Active
+            </label>
+          </div>
           <button
-            className="block rounded mt-5 py-3 px-5 bg-gray-200 text-gray-800 font-semibold"
+            className="rounded py-2 px-4 bg-gray-200 text-gray-800 font-semibold"
             type="submit"
           >
             {isSubmitting ? 'Loading' : 'Create new Link'}
@@ -69,11 +60,15 @@ const EnhancedLinkForm = withFormik({
       link: '',
       isActive: false,
       closePanel: props.closePanel,
-      setLinks: props.setLinks
+      setLinks: props.setLinks,
+      increaseLinkCount: props.increaseLinkCount
     }
   },
   validationSchema: validationSchema,
   handleSubmit: addLink
 })(NewLinkForm)
 
-export default connect(null, { setLinks })(EnhancedLinkForm)
+export default connect(null, {
+  setLinks,
+  increaseLinkCount
+})(EnhancedLinkForm)
