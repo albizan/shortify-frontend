@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const NavbarHeader = styled.header`
-  position: ${(props) => props.position};
+  position: ${props => props.position};
   top: 0;
   left: 0;
   right: 0;
-  color: ${(props) => (props.theme === 'dark' ? 'black' : 'white')};
+  color: ${props => (props.theme === 'dark' ? 'black' : 'white')};
 `
 
 const StyledLink = styled(Link)`
-  border-color: ${(props) => (props.theme === 'dark' ? 'black' : 'white')};
+  border-color: ${props => (props.theme === 'dark' ? 'black' : 'white')};
   &:hover {
-    color: ${(props) => (props.theme === 'dark' ? 'white' : 'black')};
-    background-color: ${(props) => (props.theme === 'dark' ? 'black' : 'white')};
+    color: ${props => (props.theme === 'dark' ? 'white' : 'black')};
+    background-color: ${props => (props.theme === 'dark' ? 'black' : 'white')};
   }
 `
 
@@ -40,7 +40,11 @@ const Navbar = ({ position, theme }) => {
 
   const renderNavbarButton = () => {
     return (
-      <button onClick={() => setOpen(!isOpen)} type="button" className="block focus:outline-none">
+      <button
+        onClick={() => setOpen(!isOpen)}
+        type="button"
+        className="block focus:outline-none"
+      >
         <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
           {renderSvgPath()}
         </svg>
@@ -78,7 +82,7 @@ const Navbar = ({ position, theme }) => {
         <StyledLink
           theme={theme}
           to="/signup"
-          className="block mt-1 p-2 sm:px-5 sm:m-0 sm:ml-2 font-semibold rounded sm:rounded-full border"
+          className="block mt-1 p-2 sm:px-5 sm:m-0 sm:ml-2 font-semibold rounded sm:rounded-lg border-2"
         >
           Sign Up
         </StyledLink>
