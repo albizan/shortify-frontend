@@ -7,6 +7,7 @@ export async function getLinksFromServer(page = 1, itemsPerPage = 5, setLinks) {
       size: itemsPerPage
     }
   })
+  console.log('List of links received')
   setLinks(response.data)
 }
 

@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 
 import { FaRegEnvelope, FaCheck, FaCogs } from 'react-icons/fa'
 
-const Header = ({ authState }) => {
-  const { name, email } = authState.user
+const Header = ({ name, email }) => {
   return (
     <header className="container mx-auto px-2 flex items-center justify-between py-8 border-b-2 border-gray-300">
       <div>
@@ -34,7 +33,7 @@ const Header = ({ authState }) => {
 
 function mapStateToProps(store) {
   return {
-    authState: store.authState
+    ...store.authState
   }
 }
 

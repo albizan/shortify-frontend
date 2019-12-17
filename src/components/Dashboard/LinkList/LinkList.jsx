@@ -8,16 +8,20 @@ import NewLinkForm from '../NewLinkForm'
 import LinkItem from '../LinkItem'
 
 const LinkList = props => {
-  const { page, itemsPerPage, links, setLinks } = props
+  const { page, itemsPerPage, links, setLinks, totalLinks } = props
 
   const [showNewLinkPanel, setShowNewLinkPanel] = useState(false)
 
   useEffect(() => {
+    console.log('LinkList mounted')
+  }, [])
+  useEffect(() => {
+    console.log('Retreiving list of links from server...')
     // When component mounts, request page 1 with 5 items per page
     getLinksFromServer(page, itemsPerPage, setLinks)
 
     // eslint-disable-next-line
-  }, [page, itemsPerPage])
+  }, [page, itemsPerPage, totalLinks])
   return (
     <div className="container mx-auto py-8 mt-10">
       <div className="flex flex-row justify-between items-center">

@@ -17,7 +17,7 @@ const Dashboard = ({ authState, onLogin, onLogout, setUser }) => {
       try {
         // Use JWT to retreive user info
         const response = await http.get('user/me')
-        // Load user info in redux store
+        // If no error is thrown, jwt is still valid. Load user info in redux store
         setUser(response.data)
         // Retreive access token and update redux store
         onLogin(retreiveAccessToken())
@@ -28,6 +28,7 @@ const Dashboard = ({ authState, onLogin, onLogout, setUser }) => {
         history.push('/signin')
       }
     }
+    console.log('Dashboard mounted')
     getUserInfo()
     // eslint-disable-next-line
   }, [])

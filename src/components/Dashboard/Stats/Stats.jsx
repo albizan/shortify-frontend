@@ -19,6 +19,7 @@ const Stats = props => {
       }
     }
 
+    console.log('Stats Mounted')
     // Call api server
     getUserStats()
 
