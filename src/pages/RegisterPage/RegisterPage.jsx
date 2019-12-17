@@ -8,14 +8,14 @@ const Gradient = styled.div`
   color: white;
   background: #8e2de2; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-    -30deg,
-    #4a00e0 10%,
-    #8e2de2 90%
+    45deg,
+    #b06ab3 10%,
+    #4568dc 90%
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    -30deg,
-    #4a00e0 10%,
-    #8e2de2 90%
+    45deg,
+    #b06ab3 10%,
+    #4568dc 90%
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `
 
@@ -31,7 +31,7 @@ const RegisterPage = props => {
           </p>
         </div>
         <Link
-          className="bg-gray-200 text-gray-800 rounded-full px-8 py-3 mt-6 text-sm sm:text-base font-bold uppercase tracking-wide"
+          className="bg-gray-200 text-gray-800 rounded-lg px-8 py-3 mt-6 text-sm sm:text-base font-bold uppercase tracking-wide"
           to="/signin"
         >
           Sign In

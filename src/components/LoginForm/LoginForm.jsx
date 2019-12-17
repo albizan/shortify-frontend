@@ -9,16 +9,17 @@ import { loginUser } from '../../services'
 import { onLogin, onLogout } from '../../redux/actions'
 
 const Button = styled.button`
+  border: 0;
   background: #8e2de2; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     45deg,
-    #4a00e0 10%,
-    #8e2de2 90%
+    #b06ab3 10%,
+    #4568dc 90%
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     45deg,
-    #4a00e0 10%,
-    #8e2de2 90%
+    #b06ab3 10%,
+    #4568dc 90%
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `
 
@@ -36,7 +37,7 @@ const RegisterForm = ({
       </h2>
       <form className="text-xl" onSubmit={handleSubmit}>
         <Field
-          className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
+          className="block rounded-lg py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
           type="email"
           name="email"
           id="email"
@@ -45,7 +46,7 @@ const RegisterForm = ({
         <FormError message={errors.email} touched={touched.email} />
 
         <Field
-          className="block rounded-full py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
+          className="block rounded-lg py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
           type="password"
           name="password"
           id="password"
@@ -54,7 +55,7 @@ const RegisterForm = ({
         <FormError message={errors.password} touched={touched.password} />
 
         <Button
-          className="block rounded-full mt-10 py-3 px-5 bg-indigo-600 border border-indigo-600 mx-auto w-full text-white font-semibold"
+          className="block rounded-lg mt-10 py-3 px-5 bg-indigo-600 border border-indigo-600 mx-auto w-full text-white font-semibold"
           type="submit"
         >
           {isSubmitting ? 'Loading' : 'Sign In'}
