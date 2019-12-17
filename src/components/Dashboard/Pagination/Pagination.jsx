@@ -26,7 +26,9 @@ const Pagination = props => {
       </div>
     )
   })
-
+  if (totalPages === 1) {
+    return null
+  }
   return (
     <div>
       <div className="container mx-auto flex">{renderPages}</div>
