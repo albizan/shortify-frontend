@@ -97,7 +97,9 @@ const LinkItem = props => {
                   >
                     <FaTimes className="text-xl text-gray-100" />
                   </div>
-                  <CopyToClipboard text={id}>
+                  <CopyToClipboard
+                    text={`https://shortify-test.netlify.com/${id}`}
+                  >
                     <div className="w-10 h-10 bg-indigo-500 p-2 rounded-full flex justify-center items-center cursor-pointer">
                       <FaCopy className="text-xl text-gray-100" />
                     </div>
