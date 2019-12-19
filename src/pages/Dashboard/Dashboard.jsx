@@ -5,10 +5,10 @@ import { onLogout, setUser, onLogin } from '../../redux/actions'
 import { history, retreiveAccessToken } from '../../helpers'
 import http from '../../apis'
 
-import Stats from '../../components/dashboard/Stats'
-import Header from '../../components/dashboard/Header'
-import LinkList from '../../components/dashboard/LinkList'
-import Pagination from '../../components/dashboard/Pagination'
+import Stats from '../../components/Dashboard/Stats'
+import Header from '../../components/Dashboard/Header'
+import LinkList from '../../components/Dashboard/LinkList'
+import Pagination from '../../components/Dashboard/Pagination'
 
 const Dashboard = ({ authState, onLogin, onLogout, setUser }) => {
   // Check if local accessToken is still valid
