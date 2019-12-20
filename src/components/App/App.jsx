@@ -9,6 +9,7 @@ import Landing from '../../pages/Landing/Landing'
 import ConfirmEmail from '../../pages/ConfirmEmail'
 import PrivateRoute from '../PrivateRoute'
 import Dashboard from '../../pages/Dashboard'
+import Amnesia from '../../pages/Amnesia'
 import Notfound from '../../pages/NotFound'
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/signup" component={RegisterPage} />
           <Route path="/signin" component={LoginPage} />
           <Route path="/confirm-email/:token" component={ConfirmEmail} />
+          <Route path="/amnesia" component={Amnesia} />
           <Route exact path="/not-found" component={Notfound} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <Redirect exact to="/not-found" />

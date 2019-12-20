@@ -7,6 +7,7 @@ import validationSchema from './validationSchema'
 import FormError from '../FormError'
 import { loginUser } from '../../services'
 import { onLogin, onLogout } from '../../redux/actions'
+import { history } from '../../helpers'
 
 const Button = styled.button`
   border: 0;
@@ -60,6 +61,12 @@ const RegisterForm = ({
         >
           {isSubmitting ? 'Loading' : 'Sign In'}
         </Button>
+        <p
+          onClick={() => history.push('/amnesia')}
+          className="text-xs text-gray-600 text-right mt-4 font-bold tracking-wide cursor-pointer hover:text-gray-800"
+        >
+          I forgot my password :-(
+        </p>
         {
           <p className="text-xl text-red-500 font-semibold text-center ">
             {values.message}
