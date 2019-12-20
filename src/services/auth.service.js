@@ -93,3 +93,22 @@ export async function loginUser(
     setSubmitting(false)
   }
 }
+
+export async function forgotPassword(values, { setSubmitting, setValues }) {
+  setSubmitting(true)
+
+  try {
+    await http.post('auth/amnesia')
+    setValues({
+      ...values,
+      message: 'An email was sent to submitted address'
+    })
+  } catch {
+    setValues({
+      ...values,
+      message: 'An error occured'
+    })
+  } finally {
+    setSubmitting(false)
+  }
+}
