@@ -98,7 +98,7 @@ export async function forgotPassword(values, { setSubmitting, setValues }) {
   setSubmitting(true)
 
   try {
-    await http.post('auth/amnesia')
+    await http.post('auth/amnesia', { email: values.email })
     setValues({
       ...values,
       message: 'An email was sent to submitted address'
