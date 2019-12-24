@@ -1,5 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import { onLogout, setUser, onLogin } from '../../redux/actions'
 import { history, retreiveAccessToken } from '../../helpers'
@@ -37,6 +39,7 @@ const Dashboard = ({ authState, onLogin, onLogout, setUser }) => {
 
   return (
     <Fragment>
+      <ToastContainer />
       <Header />
       <Stats />
       <LinkList />
