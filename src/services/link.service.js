@@ -1,4 +1,5 @@
 import http from '../apis'
+import { toast } from 'react-toastify'
 
 export async function getLinksFromServer(page = 1, itemsPerPage = 5, setLinks) {
   const response = await http.get('user/links', {
@@ -16,13 +17,23 @@ export async function deleteLink(id, removeLink) {
     const response = await http.delete(`user/delete-link/${id}`)
     if (response.data.affected === 0) {
       // Toast Error
+      toast.error('An error occurred, try again later', {
+        position: toast.POSITION.BOTTOM_CENTER
+      })
       return
     }
     // Delete successful
-    // Remove link from current linksStore with the action creator [removeLink]
+    toast.success('Link was deleted successfully', {
+      position: toast.POSITION.BOTTOM_CENTER
+    })
+    // Remove link from current linksStore with action creator [removeLink]
     removeLink(id)
   } catch (error) {
     console.log(error)
+    // Toast Error
+    toast.error('An error occurred, try again later', {
+      position: toast.POSITION.BOTTOM_CENTER
+    })
   }
 }
 
@@ -43,8 +54,14 @@ export async function addLink({
     await http.post('user/add-link', data)
     increaseLinkCount()
     closePanel()
+    toast.success('Link was created successfully', {
+      position: toast.POSITION.BOTTOM_CENTER
+    })
     await getLinksFromServer(1, 5, setLinks)
   } catch (error) {
+    toast.error('An error occurred, try again later', {
+      position: toast.POSITION.BOTTOM_CENTER
+    })
     console.log(error)
   }
 }
