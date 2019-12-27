@@ -31,11 +31,11 @@ const RegisterForm = ({
   isSubmitting
 }) => {
   return (
-    <div className="px-20 py-12 w-136">
-      <h2 className="text-4xl mb-12 font-thin text-center">
+    <div className="px-4 sm:px-20 py-12 w-136">
+      <h2 className="text-2xl sm:text-3xl mb-12 font-semibold text-gray-800 text-center">
         Create Free Account
       </h2>
-      <form className="text-xl" onSubmit={handleSubmit}>
+      <form className="text-base sm:text-lg" onSubmit={handleSubmit}>
         <Field
           className="block rounded-lg py-3 px-5 bg-white border border-gray-400 mx-auto w-full focus:outline-none"
           type="text"
