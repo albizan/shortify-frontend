@@ -8,6 +8,8 @@ const NavbarHeader = styled.header`
   left: 0;
   right: 0;
   color: ${props => (props.theme === 'dark' ? 'black' : 'white')};
+  background-color: ${props =>
+    props.isOpen && props.theme === 'dark' ? 'white' : 'transparent'};
 `
 
 const StyledLink = styled(Link)`
@@ -56,6 +58,7 @@ const Navbar = ({ position, theme }) => {
     <NavbarHeader
       position={position}
       theme={theme}
+      isOpen={isOpen}
       className="sm:flex sm:justify-between sm:items-center px-2 sm:px-20 py-3"
     >
       <div className="flex items-center justify-between sm:block px-2">
