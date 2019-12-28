@@ -72,9 +72,11 @@ const LinkItem = props => {
                 ></ToggleButton>
               </div>
             </div>
-            <div>
-              <h3 className="text-xl">{title}</h3>
-              <h4 className="text-sm w-136 truncate">{original}</h4>
+            <div className="text-gray-700">
+              <h3 className="sm:text-lg font-semibold">{title}</h3>
+              <h4 className="text-xs sm:text-sm sm:w-136 truncate">
+                {original}
+              </h4>
             </div>
           </div>
           <div className="flex items-center p-3">

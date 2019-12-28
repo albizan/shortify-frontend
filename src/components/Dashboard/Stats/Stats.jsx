@@ -27,23 +27,23 @@ const Stats = props => {
   }, [])
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto px-4 sm:px-0 py-6">
       <h3 className="font-semibold uppercase tracking-wide text-gray-700">
         Overview
       </h3>
-      <div className="flex items-center justify-around mt-4">
-        <div className="flex flex-col items-center justify-center p-3 rounded border w-56 text-2xl shadow-lg bg-white">
-          <h4 className="text-gray-800 text-base">Total Links</h4>
+      <div className="flex flex-col sm:flex-row items-center justify-around mt-6">
+        <div className="flex flex-col items-center justify-center p-3 rounded border w-full sm:w-56 text-2xl sm:shadow-lg bg-white mb-4">
+          <h4 className="text-gray-700 text-base">Total Links</h4>
           {loaded && <p>{totalLinks}</p>}
           {!loaded && <p className="text-base">Loading data...</p>}
         </div>
-        <div className="flex flex-col items-center justify-center p-3 rounded border w-56 text-2xl shadow-lg bg-white">
-          <h4 className="text-gray-800 text-base">Active Links</h4>
+        <div className="flex flex-col items-center justify-center p-3 rounded border w-full sm:w-56 text-2xl sm:shadow-lg bg-white mb-4">
+          <h4 className="text-gray-700 text-base">Active Links</h4>
           {loaded && <p>{activeLinks}</p>}
           {!loaded && <p className="text-base">Loading data...</p>}
         </div>
-        <div className="flex flex-col items-center justify-center p-3 rounded border w-56 text-2xl shadow-lg bg-white">
-          <h4 className="text-gray-800 text-base">Total Clicks</h4>
+        <div className="flex flex-col items-center justify-center p-3 rounded border w-full sm:w-56 text-2xl sm:shadow-lg bg-white mb-4">
+          <h4 className="text-gray-700 text-base">Total Clicks</h4>
           {loaded && <p>{totalClicks}</p>}
           {!loaded && <p className="text-base">Loading data...</p>}
         </div>

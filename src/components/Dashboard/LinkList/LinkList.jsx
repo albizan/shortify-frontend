@@ -23,7 +23,7 @@ const LinkList = props => {
     // eslint-disable-next-line
   }, [page, itemsPerPage, totalLinks])
   return (
-    <div className="container mx-auto py-8 mt-10">
+    <div className="container mx-auto px-4 sm:px-0 py-2">
       <div className="flex flex-row justify-between items-center">
         <h3 className="font-semibold uppercase tracking-wide text-gray-700">
           Manage your links

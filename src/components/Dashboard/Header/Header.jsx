@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { onLogout } from '../../../redux/actions'
 import { history } from '../../../helpers'
 
-import { FaRegEnvelope, FaCheck, FaCogs } from 'react-icons/fa'
+import { FaRegEnvelope, FaCheck } from 'react-icons/fa'
 
 const Header = ({ name, email, onLogout }) => {
   const handleLogOut = () => {
@@ -11,12 +11,12 @@ const Header = ({ name, email, onLogout }) => {
     history.push('signin')
   }
   return (
-    <header className="container mx-auto px-2 flex items-center justify-between py-8 border-b-2 border-gray-300">
+    <header className="container mx-auto px-4 sm:px-0 flex items-center justify-between py-6 border-b-2 border-gray-300">
       <div>
         <h3 className="font-semibold tracking-wide text-lg text-gray-700">
           Welcome back, {name}
         </h3>
-        <div className="flex justify-between text-gray-600">
+        <div className="sm:flex justify-between text-gray-600">
           <p className="mr-3">
             <FaRegEnvelope className="inline" /> {email}
           </p>
@@ -26,12 +26,9 @@ const Header = ({ name, email, onLogout }) => {
         </div>
       </div>
       <div>
-        <button className="mr-6 focus:outline-none">
-          <FaCogs className="inline text-xl text-gray-600 hover:text-gray-800" />
-        </button>
         <button
           onClick={handleLogOut}
-          className="text-gray-800 text-sm bg-gray-200 font-semibold px-3 py-1 rounded hover:bg-gray-700 hover:text-gray-200"
+          className="text-gray-800 text-lg bg-gray-200 font-semibold px-3 py-1 rounded hover:bg-gray-700 hover:text-gray-200"
         >
           Log Out
         </button>
@@ -41,8 +38,10 @@ const Header = ({ name, email, onLogout }) => {
 }
 
 function mapStateToProps(store) {
+  const { name, email } = store.authState.user
   return {
-    ...store.authState
+    name,
+    email
   }
 }
 
