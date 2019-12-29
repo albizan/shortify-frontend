@@ -10,7 +10,7 @@ const Link = props => {
     async function retreiveLink() {
       try {
         const data = await getOriginalLink(linkId)
-        history.replace(data.original)
+        window.location.replace = data.original
         setLinkIsValid(true)
       } catch (error) {
         setLinkIsValid(false)
