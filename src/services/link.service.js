@@ -18,13 +18,15 @@ export async function deleteLink(id, removeLink) {
     if (response.data.affected === 0) {
       // Toast Error
       toast.error('An error occurred, try again later', {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2250
       })
       return
     }
     // Delete successful
     toast.success('Link was deleted successfully', {
-      position: toast.POSITION.BOTTOM_CENTER
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2250
     })
     // Remove link from current linksStore with action creator [removeLink]
     removeLink(id)
@@ -32,7 +34,8 @@ export async function deleteLink(id, removeLink) {
     console.log(error)
     // Toast Error
     toast.error('An error occurred, try again later', {
-      position: toast.POSITION.BOTTOM_CENTER
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2250
     })
   }
 }
@@ -55,12 +58,14 @@ export async function addLink({
     increaseLinkCount()
     closePanel()
     toast.success('Link was created successfully', {
-      position: toast.POSITION.BOTTOM_CENTER
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2250
     })
     await getLinksFromServer(1, 5, setLinks)
   } catch (error) {
     toast.error('An error occurred, try again later', {
-      position: toast.POSITION.BOTTOM_CENTER
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2250
     })
     console.log(error)
   }
