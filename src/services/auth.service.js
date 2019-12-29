@@ -112,3 +112,23 @@ export async function forgotPassword(values, { setSubmitting, setValues }) {
     setSubmitting(false)
   }
 }
+
+export async function sendNewPassword(values, { setSubmitting, setValues }) {
+  const { password_1, password_2, token } = values
+  try {
+    await http.post('auth/change-password', {
+      password_1,
+      password_2,
+      token
+    })
+    setValues({
+      ...values,
+      message: 'Password changed'
+    })
+  } catch (error) {
+    setValues({
+      ...values,
+      message: 'An error Occurred'
+    })
+  }
+}
