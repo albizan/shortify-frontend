@@ -57,9 +57,12 @@ const LinkItem = props => {
   return (
     <Fragment>
       <div className="my-4 rounded border-2 border-gray-200">
-        <div className="flex justify-between h-20">
-          <div className="flex justify-start items-center">
-            <div className="flex items-center justify-center mx-3">
+        <div id="link-item" className="flex h-24 relative">
+          <div id="toggle & titles" className="flex justify-start items-center">
+            <div
+              id="toggle-wrapper"
+              className="flex items-center justify-center mx-3"
+            >
               <div className="relative">
                 <input id="toogle" type="checkbox" className="hidden" />
 
@@ -72,14 +75,15 @@ const LinkItem = props => {
                 ></ToggleButton>
               </div>
             </div>
-            <div className="text-gray-700">
-              <h3 className="sm:text-lg font-semibold">{title}</h3>
-              <h4 className="text-xs sm:text-sm sm:w-136 truncate">
-                {original}
-              </h4>
+            <div id="titles" className="text-gray-700 w-56 sm:w-136">
+              <h3 className="sm:text-lg font-semibold truncate">{title}</h3>
+              <h4 className="text-xs w-full sm:text-sm truncate">{original}</h4>
             </div>
           </div>
-          <div className="flex items-center p-3">
+          <div
+            id="options"
+            className="absolute right-0 top-0 bottom-0 bg-gray-200 flex items-center p-3"
+          >
             {open && (
               <div className="flex items-center justify-around">
                 <div className="mr-4">
