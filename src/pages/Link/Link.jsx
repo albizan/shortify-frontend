@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import { getOriginalLink } from '../../services'
-import { history } from '../../helpers'
 
 const Link = props => {
   const { linkId } = props.match.params
@@ -17,6 +16,7 @@ const Link = props => {
       }
     }
     retreiveLink()
+    // eslint-disable-next-line
   }, [])
   return (
     <div className="h-screen w-full flex items-center justify-center">
