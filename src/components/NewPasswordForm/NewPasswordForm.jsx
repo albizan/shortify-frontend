@@ -2,6 +2,7 @@ import React from 'react'
 import { Field, withFormik } from 'formik'
 import FormError from '../FormError'
 import validationSchema from './validationSchema'
+import { sendNewPassword } from '../../services'
 
 const NewPasswordForm = ({
   values,
@@ -50,7 +51,8 @@ const EnhancedNewPasswordForm = withFormik({
       message: ''
     }
   },
-  validationSchema: validationSchema
+  validationSchema: validationSchema,
+  handleSubmit: sendNewPassword
 })(NewPasswordForm)
 
 export default EnhancedNewPasswordForm
