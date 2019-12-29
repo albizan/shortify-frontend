@@ -19,15 +19,15 @@ const App = () => {
     <Fragment>
       <Router history={history}>
         <Switch>
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <Route path="/signup" component={RegisterPage} />
           <Route path="/signin" component={LoginPage} />
           <Route path="/confirm-email/:token" component={ConfirmEmail} />
           <Route path="/amnesia" component={Amnesia} />
           <Route path="/new-password/:token" component={NewPassword} />
           <Route path="/:linkId" component={Link} />
-          <Route exact path="/not-found" component={Notfound} />
-          <Route exact path="/" component={Landing} />
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <Route path="/not-found" component={Notfound} />
+          <Route path="/" component={Landing} />
           <Redirect exact to="/not-found" />
         </Switch>
       </Router>
