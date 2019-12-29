@@ -12,6 +12,7 @@ import Dashboard from '../../pages/Dashboard'
 import Amnesia from '../../pages/Amnesia'
 import NewPassword from '../../pages/NewPassword'
 import Notfound from '../../pages/NotFound'
+import Link from '../../pages/Link'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/confirm-email/:token" component={ConfirmEmail} />
           <Route path="/amnesia" component={Amnesia} />
           <Route path="/new-password/:token" component={NewPassword} />
+          <Route exact path="/:linkId" component={Link} />
           <Route exact path="/not-found" component={Notfound} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <Redirect exact to="/not-found" />

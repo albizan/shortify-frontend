@@ -12,6 +12,10 @@ export async function getLinksFromServer(page = 1, itemsPerPage = 5, setLinks) {
   setLinks(response.data)
 }
 
+export async function getOriginalLink(linkId) {
+  const response = await http.get(`link/${linkId}`)
+  return response.data
+}
 export async function deleteLink(id, removeLink) {
   try {
     const response = await http.delete(`user/delete-link/${id}`)
