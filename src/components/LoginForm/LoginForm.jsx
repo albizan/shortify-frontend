@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import validationSchema from './validationSchema'
 
 import FormError from '../FormError'
-import { loginUser } from '../../services'
+import { loginUser, resendConfirmationMail } from '../../services'
 import { onLogin, onLogout } from '../../redux/actions'
 import { history } from '../../helpers'
 
@@ -67,11 +67,10 @@ const RegisterForm = ({
         >
           I forgot my password :-(
         </p>
-        {
-          <p className="text-xl text-red-500 font-semibold text-center ">
-            {values.message}
-          </p>
-        }
+        <p className="text-xl text-red-500 font-semibold text-center">
+          {values.message}
+        </p>
+        {values.message.startsWith('Activate') && <p onClick={() => {resendConfirmationMail(values.email)}} className="cursor-pointer border-2 border-red-500 rounded-lg p-2 text-xl text-red-500 font-semibold text-center">resend confirmation mail</p> }
       </form>
     </div>
   )

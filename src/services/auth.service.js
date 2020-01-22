@@ -132,3 +132,9 @@ export async function sendNewPassword(values, { setSubmitting, setValues }) {
     })
   }
 }
+
+export async function resendConfirmationMail(email) {
+  http.post('auth/resend-confirmation-mail', {
+    email
+  })
+}
