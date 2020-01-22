@@ -1,10 +1,13 @@
 import axios from 'axios'
 import { retreiveAccessToken } from '../helpers'
 
-const http = axios.create()
-
-http.defaults.baseURL = 'https://shortify-test.herokuapp.com/'
-http.defaults.timeout = 7000
+const http = axios.create({
+  baseURL: 'http://localhost:80',
+  timeout: 1000,
+  headers: {
+    'Content-Type': 'application/json',
+  }
+})
 
 http.interceptors.request.use(reqConfig => {
   reqConfig.headers.authorization = 'Bearer ' + retreiveAccessToken()
