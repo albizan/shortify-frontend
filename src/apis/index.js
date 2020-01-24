@@ -2,7 +2,7 @@ import axios from 'axios'
 import { retreiveAccessToken } from '../helpers'
 
 const http = axios.create({
-  baseURL: 'http://localhost:80',
+  baseURL: 'http://212.237.7.61/',
   timeout: 1000,
   headers: {
     'Content-Type': 'application/json',
