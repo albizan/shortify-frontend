@@ -2,8 +2,8 @@ import axios from 'axios'
 import { retreiveAccessToken } from '../helpers'
 
 const http = axios.create({
-  baseURL: 'http://212.237.7.61/',
-  timeout: 1000,
+  baseURL: 'https://shortify-apis.albertozanotti.it',
+  timeout: 2000,
   headers: {
     'Content-Type': 'application/json',
   }
